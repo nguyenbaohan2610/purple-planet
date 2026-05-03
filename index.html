@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Purple Planet</title>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  background: radial-gradient(circle at top, #1e103d, #090015 70%);
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  overflow:hidden;
+}
+
+/* Planet */
+.scene{
+  position:relative;
+  width:500px;
+  height:500px;
+}
+
+.planet{
+  position:absolute;
+  top:50%;
+  left:50%;
+  width:220px;
+  height:220px;
+  transform:translate(-50%,-50%);
+  border-radius:50%;
+  background:
+    radial-gradient(circle at 30% 30%, #f4c6ff, #b45dff 40%, #7b1fff 70%, #4b0082 100%);
+  box-shadow:
+    0 0 40px #c66bff,
+    0 0 90px rgba(190,80,255,0.7);
+  animation: spinPlanet 12s linear infinite;
+}
+
+/* Planet shine */
+.planet::before{
+  content:"";
+  position:absolute;
+  top:20px;
+  left:40px;
+  width:50px;
+  height:50px;
+  border-radius:50%;
+  background:rgba(255,255,255,0.35);
+  filter:blur(5px);
+}
+
+.planet::after{
+  content:"";
+  position:absolute;
+  inset:-15px;
+  border-radius:50%;
+  border:2px solid rgba(255,255,255,0.12);
+}
+
+/* Ring */
+.ring{
+  position:absolute;
+  top:50%;
+  left:50%;
+  width:300px;
+  height:90px;
+  transform:translate(-50%,-50%) rotate(-15deg);
+  border-radius:50%;
+  border:8px solid rgba(221,167,255,0.45);
+  box-shadow:0 0 20px rgba(212,112,255,0.6);
+}
+
+/* Stars */
+.star{
+  position:absolute;
+  width:6px;
+  height:6px;
+  background:white;
+  border-radius:50%;
+  box-shadow:0 0 10px white, 0 0 20px #d79cff;
+  animation: twinkle 2s infinite ease-in-out;
+}
+
+/* Bigger sparkle stars */
+.star::before,
+.star::after{
+  content:"";
+  position:absolute;
+  background:white;
+}
+
+.star::before{
+  width:2px;
+  height:14px;
+  top:-4px;
+  left:2px;
+}
+
+.star::after{
+  width:14px;
+  height:2px;
+  top:2px;
+  left:-4px;
+}
+
+/* Random star positions */
+.s1{top:30px; left:70px; animation-delay:0s;}
+.s2{top:80px; right:60px; animation-delay:.5s;}
+.s3{bottom:60px; left:40px; animation-delay:1s;}
+.s4{bottom:90px; right:70px; animation-delay:1.5s;}
+.s5{top:180px; left:10px; animation-delay:.7s;}
+.s6{top:220px; right:20px; animation-delay:1.2s;}
+.s7{top:10px; left:250px; animation-delay:1.8s;}
+.s8{bottom:20px; left:240px; animation-delay:.3s;}
+
+/* Animations */
+@keyframes spinPlanet{
+  from{
+    transform:translate(-50%,-50%) rotate(0deg);
+  }
+  to{
+    transform:translate(-50%,-50%) rotate(360deg);
+  }
+}
+
+@keyframes twinkle{
+  0%,100%{
+    transform:scale(1);
+    opacity:1;
+  }
+  50%{
+    transform:scale(1.8);
+    opacity:.4;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="scene">
+  <div class="ring"></div>
+  <div class="planet"></div>
+
+  <div class="star s1"></div>
+  <div class="star s2"></div>
+  <div class="star s3"></div>
+  <div class="star s4"></div>
+  <div class="star s5"></div>
+  <div class="star s6"></div>
+  <div class="star s7"></div>
+  <div class="star s8"></div>
+</div>
+
+</body>
+</html>
